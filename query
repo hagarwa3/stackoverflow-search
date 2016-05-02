@@ -1,0 +1,38 @@
+GET stackoverflowbig/question/_search
+{
+  "query": {
+    "function_score": {
+      "query": {
+        "filtered": {
+          "query": {
+            "query_string": {
+              "query": "database insert csv"
+            }
+          },
+          "filter": {
+            "terms": {
+              "@Tags": ["sql"]
+            }
+          }
+        }
+      },
+      "functions": [
+        {
+          "script_score": {
+            "script": {
+              "params": {
+                "a": 0.33,
+                "view_count_normalizer": 110030,
+                "score_normalizer": 500,
+                "e": 2.71828
+              },
+              "inline": "(1 - pow(e, -1*doc['@Score'].value/score_normalizer))*a+(1 - pow(e, -1*doc['@ViewCount'].value/view_count_normalizer))*pow(a, 2)"
+            }
+          }
+        }
+      ],
+      "boost_mode": "sum",
+      "score_mode": "sum"
+    }
+  }
+}
