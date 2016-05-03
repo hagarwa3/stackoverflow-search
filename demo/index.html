@@ -1,18 +1,26 @@
 <html>
-  <title>stackoverflow-bot</title>
+  <title>stackoverflow-search</title>
   <link href="css/custom.css" rel="stylesheet" />
   <link href="css/bootstrap.min.css" rel="stylesheet" />
 
   <body>
     <div class="container">
       <div class="page-header">
-        <h1>stackoverflow-bot <small>query stackoverflow</small></h1>
+        <h1>stackoverflow-search <small>query stackoverflow</small></h1>
       </div>
       <div class="jumbotron">
         <div class="form-horizontal">
           <div class="form-group">
             <textarea class="form-control" id="query" rows="3" placeholder="Enter your query..." required></textarea>
           </div>
+
+          <br />
+
+          <div id="tags">
+          </div>
+
+          <br />
+          <button type="button" class="btn btn-default btn-add-tag">Add Tag</button>
         </div>
       </div>
     </div>
@@ -24,5 +32,6 @@
     </nav>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
   </body>
 </html>
