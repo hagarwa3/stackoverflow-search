@@ -20,6 +20,7 @@ def gettags():
 	text = text.replace("&nbsp"," ")
 	text = text.replace("&gt;", " ")
 	text = text.replace("&lt;", " ")
+	print text
 	rake_object = rake.Rake("smartstoplist.txt")
 	finalkeys = []
 	keywords = rake_object.run(text)
@@ -34,6 +35,7 @@ def gettags():
 		else:
 			break
 	tags = tags.strip()
+	print tags
 	return tags
 
 
