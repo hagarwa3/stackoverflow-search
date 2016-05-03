@@ -44,10 +44,13 @@ function getTags() {
   });
 
   request.done(function(result) {
-    console.log(result);
+    $('#tags').empty();
     var splitTags = result.split(" ");
     for(var i = 0; i < splitTags.length; i++) {
-      addTag(splitTags[i]);
+      var newTag = splitTags[i];
+      if(newTag.length > 0) {
+        addTag(splitTags[i]);
+      }
     }
   });
 }
