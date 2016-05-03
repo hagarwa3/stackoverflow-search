@@ -17,6 +17,11 @@ $(document).ready(function() {
       tags.splice(index, 1);
     }
   });
+
+  $('.btn-add-tag').click(function() {
+    var newTag = prompt("Enter a tag:", "tag");
+    addTag(newTag);
+  });
 });
 
 addTag("javascript");
