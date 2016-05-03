@@ -10,7 +10,6 @@ cors = CORS(app, resources={"/*": {"origins": "*"}})
 
 @app.route("/gettags/", methods=['GET'])
 def gettags():
-	print str(request)
 	text = request.args.get('text')
 	text = text.replace("%22","")
 	text = text.replace('"',"")
@@ -21,14 +20,12 @@ def gettags():
 	text = text.replace("&nbsp"," ")
 	text = text.replace("&gt;", " ")
 	text = text.replace("&lt;", " ")
-	print text
 	rake_object = rake.Rake("smartstoplist.txt")
 	finalkeys = []
 	keywords = rake_object.run(text)
 	for a in keywords:
 	    if ' ' not in a[0]:
 	        finalkeys.append(a)
-	print "keywords: ", finalkeys
 	tags=""
 	counter = 0
 	for i in xrange(len(finalkeys)):
