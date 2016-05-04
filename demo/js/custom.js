@@ -9,7 +9,55 @@ function addTag(tag) {
 }
 
 function search() {
-  alert("search");
+  var query = {
+    query: {
+      function_score: {
+        query: {
+          filtered: {
+            query: {
+              query_string: {
+                query: $('#query').val()
+              }
+            },
+            filter: {
+              terms: {
+                "@Tags": tags
+              }
+            }
+          }
+        },
+        functions: [
+          {
+            script_score: {
+              script: {
+                params: {
+                  a: 0.33,
+                  view_count_normalizer: 110030,
+                  score_normalizer: 500,
+                  e: 2.71828
+                },
+                inline: "(1 - pow(e, -1*doc['@Score'].value/score_normalizer))*a+(1 - pow(e, -1*doc['@ViewCount'].value/view_count_normalizer))*pow(a, 2)"
+              }
+            }
+          }
+        ],
+        boost_mode: "sum",
+        score_mode: "sum"
+      }
+    }
+  }
+
+  $.ajax({
+    url: 'http://localhost:9200/stackoverflowbig/question/_search',
+    dataType: 'json',
+    type: 'POST',
+    contentType: 'application/json',
+    crossDomain: true,
+    data: JSON.stringify(query),
+    success: function(data) {
+      alert(JSON.stringify(data.hits.hits));
+    }
+  });
 }
 
 $(document).ready(function() {
