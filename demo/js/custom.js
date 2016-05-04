@@ -66,6 +66,7 @@ function search() {
       for(var i = 0; i < 3; i++) {
         var title = results[i]._source['@Title'];
         var id = results[i]._source['@Id'];
+        console.log(title);
         $('#result'+(i+1)).append('<h4><a target="_blank" href="https://stackoverflow.com/questions/'+id+'">'+title+'</a></h4>');
       }
     }

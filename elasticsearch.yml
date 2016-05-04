@@ -92,7 +92,9 @@
 # Require explicit names when deleting indices:
 #
 # action.destructive_requires_name: true
-
+http.cors.enabled: true
+http.cors.allow-origin: /.*/
+http.cors.allow-credentials: true
 script.inline: on
 script.indexed: on
 script.search: on

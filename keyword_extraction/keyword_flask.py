@@ -24,6 +24,7 @@ def gettags():
 	rake_object = rake.Rake("smartstoplist.txt")
 	finalkeys = []
 	keywords = rake_object.run(text)
+	print keywords
 	for a in keywords:
 	    if ' ' not in a[0]:
 	        finalkeys.append(a)
