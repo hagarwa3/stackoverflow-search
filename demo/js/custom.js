@@ -50,7 +50,7 @@ function search() {
   if(tags.length < 1) {
     delete query.query.function_score.query.filtered.filter; //delete tag filter from query
   }
-
+  
   $.ajax({
     url: 'http://localhost:9200/stackoverflowbig/question/_search',
     dataType: 'json',
@@ -59,7 +59,15 @@ function search() {
     crossDomain: true,
     data: JSON.stringify(query),
     success: function(data) {
-      alert(JSON.stringify(data.hits.hits));
+      $('#result1').empty();
+      $('#result2').empty();
+      $('#result3').empty();
+      var results = data.hits.hits;
+      for(var i = 0; i < 3; i++) {
+        var title = results[i]._source['@Title'];
+        var id = results[i]._source['@Id'];
+        $('#result'+(i+1)).append('<h4><a target="_blank" href="https://stackoverflow.com/questions/'+id+'">'+title+'</a></h4>');
+      }
     }
   });
 }
