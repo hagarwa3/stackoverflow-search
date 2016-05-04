@@ -9,7 +9,7 @@ function addTag(tag) {
 }
 
 $(document).ready(function() {
-  $('.tag-btn').click(function() {
+  $(document).on('click', '.tag-btn', function() {
     var tag = $(this).parent().text();
     tag = tag.slice(2, tag.length-1);
     $(this).parent().remove();
