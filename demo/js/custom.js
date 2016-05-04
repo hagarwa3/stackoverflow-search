@@ -47,6 +47,10 @@ function search() {
     }
   }
 
+  if(tags.length < 1) {
+    delete query.query.function_score.query.filtered.filter; //delete tag filter from query
+  }
+
   $.ajax({
     url: 'http://localhost:9200/stackoverflowbig/question/_search',
     dataType: 'json',
