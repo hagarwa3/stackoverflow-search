@@ -8,6 +8,10 @@ function addTag(tag) {
   tags.push(tag);
 }
 
+function search() {
+  alert("search");
+}
+
 $(document).ready(function() {
   $(document).on('click', '.tag-btn', function() {
     var tag = $(this).parent().text();
@@ -24,6 +28,10 @@ $(document).ready(function() {
     addTag(newTag);
   });
 
+  $('#search').click(function() {
+    search();
+  });
+
   $('#query').on('input', function() {
     var queryText = $('#query').val();
     var lastChar = queryText.substr(queryText.length - 1);
@@ -36,7 +44,7 @@ $(document).ready(function() {
 
 function getTags() {
   var request = $.ajax({
-    url: 'http://127.0.0.1:5000/gettags/',
+    url: 'http://searchoverflow.herokuapp.com/gettags/',
     type: 'GET',
     data: {
       text: JSON.stringify($('#query').val())
@@ -45,6 +53,7 @@ function getTags() {
 
   request.done(function(result) {
     $('#tags').empty();
+    tags = [];
     var splitTags = result.split(" ");
     for(var i = 0; i < splitTags.length; i++) {
       var newTag = splitTags[i];
