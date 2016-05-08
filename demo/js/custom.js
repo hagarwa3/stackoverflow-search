@@ -9,6 +9,7 @@ function addTag(tag) {
 }
 
 function search() {
+  console.log("rip");
   var query = {
     query: {
       function_score: {
