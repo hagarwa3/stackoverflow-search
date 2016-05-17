@@ -13,4 +13,10 @@ There are multiple parts to this entire project:
 
 
 ## Parsing the StackOverflow Data
-The data was originally in XML format, which means it cannot be directly indexed into ELasticSearch. The task at hand required us to extract all questions only (that was what the search functionality was being built over), convert them to JSON, and then split all of these entries up to be easily indexed by ElasticSEarch's [__bulk API__](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html).
+The data was originally in XML format, which means it cannot be directly indexed into ELasticSearch. The task at hand required us to extract all questions only (that was what the search functionality was being built over), convert them to JSON, and then split all of these entries up to be easily indexed by ElasticSEarch's [__Bulk API__](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html).
+
+A sample entry is as follows:
+'''json
+{"@Id": 13, "@PostTypeId": 1, "@AcceptedAnswerId": 357, "@CreationDate": "2008-08-01T00:42:38.903", "@Score": 384, "@ViewCount": 111349, "@Body": "<p>Is there a standard way for a Web Server to determine what time zone offset a user is in? </p>\n\n<p>Perhaps from a <code>HTTP</code> header? Or part of the user-agent string?</p>\n", "@OwnerUserId": 9, "@LastEditorUserId": 2518525, "@LastEditorDisplayName": "Rich B", "@LastEditDate": "2015-06-05T06:26:25.383", "@LastActivityDate": "2016-02-11T04:13:22.413", "@Title": "Determining a web user's time zone", "@Tags": "<html><browser><timezone><timezoneoffset>", "@AnswerCount": 23, "@CommentCount": 3, "@FavoriteCount": 116}
+'''
+
