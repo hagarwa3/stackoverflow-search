@@ -12,7 +12,7 @@ There are multiple parts to this entire project:
 - Build extra analysis tools and experiment on questions from different languages/frameworks to see what programmers usually have questions about
 
 
-## Parsing the StackOverflow Data
+## Parsing and Indexing the StackOverflow Data
 The data was originally in XML format, which means it cannot be directly indexed into ELasticSearch. The task at hand required us to extract all questions only (that was what the search functionality was being built over), convert them to JSON, and then split all of these entries up to be easily indexed by ElasticSEarch's [__Bulk API__](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html).
 
 A sample entry is as follows:
@@ -44,3 +44,12 @@ Finally the data was all successfully indexed and then could be queried easily u
 
 ![alt-text](https://github.com/hagarwa3/stackoverflow-search/blob/master/demo/images/sense%2Bsimple%20query.png "Sense + Simple Query")
 
+
+
+## Tetsing Different Queries
+This was relatively more tricky, simply because it is a very subjective thing, and without a lot of user feedback, it's usually not possible to get a strong, statistically "good" query. We did however test different things, such as weighing most recent activity, date when question was posted, upvotes, number of responses etc. Our final query is [here](https://github.com/hagarwa3/stackoverflow-search/blob/master/query.json).
+
+
+
+## Building a Keyword Extraction Algorithm
+Currently the RAKE (Rapid Automatic Keyword Extraction) algorithm is the method being used. There is a [Python library](https://github.com/aneesha/RAKE) for the same that makes the task much easier. All possible keywords are extracted, and the top three single word keywords are the ones that are finally returned (because generally there are only three tags for most questions). This algorithm was further adapted for more of the analysis related sections of the project. There is still more work to be done in the keyword extraction, to see if the algorithm could perform better for more programming related terms. A demo of my setup (hosted on heroku) can be found [here](https://searchoverflow.herokuapp.com/gettags/?text=%22sample%20javascript%20stuff%20tbh%20javascript%20is%20great%22). The text part fo the request can be edited to your own query, which can then be sent forth to get the relevant tags.
