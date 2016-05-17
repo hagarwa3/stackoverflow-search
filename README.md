@@ -6,11 +6,11 @@ This is the data indexed by elasticsearch, and while I am not sure about this, I
 
 There are multiple parts to this entire project:
 - Parsing the original data (xml files from StackOverflow data dump) and then indexing it into elasticsearch
-- Testign multiple different queries to see which gives us the best results
+- Testing multiple different queries to see which gives us the best results
 - Building a keyword extraction algorithm for all questions, to do automatic tagging of question
 - Integrate all of this in the frontend (HTML+JS+Bootstrap)
 - Build extra analysis tools and experiment on questions from different languages/frameworks to see what programmers usually have questions about
 
 
 ## Parsing the StackOverflow Data
-The data was originally in XML format, which means it cannot be directly indexed into ELasticSearch. The task at hand required us to extract all questions only (that was what the search functionality was being built over), convert them to JSON, and then split all of these entries up to be easily indexed by ElasticSEarch's bUlk API.
+The data was originally in XML format, which means it cannot be directly indexed into ELasticSearch. The task at hand required us to extract all questions only (that was what the search functionality was being built over), convert them to JSON, and then split all of these entries up to be easily indexed by ElasticSEarch's [__bulk API__](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html).
