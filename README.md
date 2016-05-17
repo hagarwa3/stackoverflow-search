@@ -69,3 +69,9 @@ Javascript:
 Python:
 ![alt-text](https://github.com/hagarwa3/stackoverflow-search/blob/master/keyword_extraction/extra_analysis/pythonmap.png "Python Word Map")
 
+
+
+
+###A huge thank you to the creator of the wordmap library for Python, which can be found [here](https://github.com/amueller/word_cloud)
+
+MIT License
