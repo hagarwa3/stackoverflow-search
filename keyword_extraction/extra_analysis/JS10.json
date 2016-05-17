@@ -1,0 +1,213 @@
+{
+  "results":
+[
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6219024",
+        "_score": 35823008,
+        "_source": {
+          "@Id": 35823006,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T04:10:31.273",
+          "@Score": 0,
+          "@ViewCount": 7,
+          "@Body": "<p>I have these 2 arrays:</p>\n\n<pre><code>var masterArray = [\n        {'id' : '1', 'title' : 'Title 1'},\n        {'id' : '2', 'title' : 'Title 2'},\n        {'id' : '3', 'title' : 'Title 3'},\n        {'id' : '4', 'title' : 'Title 4'},\n        {'id' : '5', 'title' : 'Title 5'},\n        {'id' : '6', 'title' : 'Title 6'},\n        {'id' : '7', 'title' : 'Title 7'}\n    ];\n\nvar sortFilterInfo = [\n    {'id' : '6', 'sortOrder' : 1},\n    {'id' : '2', 'sortOrder' : 2},\n    {'id' : '7', 'sortOrder' : 3}\n]\n</code></pre>\n\n<p>With this information I need an array which gives me this sorted filtered array: ( I am only using native DOM Array methods (ES6) (map/filter/sort)      and <strong>NOT</strong> Jquery,lodash, etc.</p>\n\n<pre><code>var resultArray = [\n    {'id' : '6', 'title' : 'Title 6'},\n    {'id' : '2', 'title' : 'Title 2'},\n    {'id' : '7', 'title' : 'Title 7'}\n]\n</code></pre>\n\n<p>Thanks!</p>\n",
+          "@OwnerUserId": 130560,
+          "@LastActivityDate": "2016-03-06T04:10:31.273",
+          "@Title": "Sorting/Filtering from 2 arrays",
+          "@Tags": "<javascript><arrays>",
+          "@AnswerCount": 0,
+          "@CommentCount": 3
+        }
+      },
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6219000",
+        "_score": 35822956,
+        "_source": {
+          "@Id": 35822955,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T04:01:31.563",
+          "@Score": 0,
+          "@ViewCount": 8,
+          "@Body": "<p>if there is a web page which will be inserted into an app, it can be linked to another page within an app when I click somewhere on the web page because of the special link that can only be open within an app. However, if I want to make the same web page be opened within a mobile browser, I have to replace the special link.So,the prerequisite is that I need to detect if the web page is opened within an app or a mobile browser. Anyone can help?</p>\n",
+          "@OwnerUserId": 6024119,
+          "@LastActivityDate": "2016-03-06T04:07:28.030",
+          "@Title": "How can I detect if a web page is opened by a mobile browser or an app?",
+          "@Tags": "<javascript><html><jquery-mobile><web><hybrid-mobile-app>",
+          "@AnswerCount": 1,
+          "@CommentCount": 0
+        }
+      },
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6218986",
+        "_score": 35822924,
+        "_source": {
+          "@Id": 35822924,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T03:55:42.797",
+          "@Score": 0,
+          "@ViewCount": 6,
+          "@Body": "<p>I would like to upload my images by <code>Dropzone.js</code> library. </p>\n\n<p>index.html:\n                </p>\n\n<pre><code>                &lt;form action=\"/file-upload\" class=\"dropzone bg-gray col-md-12 center-margin\"\n                      id=\"demo-upload\"&gt;\n\n\n                &lt;/form&gt;\n\n            &lt;/div&gt;\n</code></pre>\n\n<hr>\n\n<p>end of my index.html  :</p>\n\n<pre><code>$(document).ready(function() {\n            Dropzone.autoDiscover = false;\n            var fileList = new Array;\n            var i =0;\n            $(\"#dropzone-example\").dropzone({\n                addRemoveLinks: true,\n                init: function() {\n\n                    // Hack: Add the dropzone class to the element\n                    $(this.element).addClass(\"dropzone\");\n\n                    this.on(\"success\", function(file, serverFileName) {\n                        fileList[i] = {\"serverFileName\" : serverFileName, \"fileName\" : file.name,\"fileId\" : i };\n                        //console.log(fileList);\n                        i++;\n\n                    });\n                    this.on(\"removedfile\", function(file) {\n                        var rmvFile = \"\";\n                        for(f=0;f&lt;fileList.length;f++){\n\n                            if(fileList[f].fileName == file.name)\n                            {\n                                rmvFile = fileList[f].serverFileName;\n\n                            }\n\n                        }\n\n                        if (rmvFile){\n                            $.ajax({\n                                url: \"http://www.****.com/assets/delete_temp_files.php\",\n                                type: \"POST\",\n                                data: { \"fileList\" : rmvFile }\n                            });\n                        }\n                    });\n\n                },\n                url: \"http://www.*****.com/assets/Upload.php\"\n            });\n\n        });\n</code></pre>\n\n<hr>\n\n<p>server side files :</p>\n\n<p><a href=\"http://i.stack.imgur.com/0lRCr.jpg\" rel=\"nofollow\"><img src=\"http://i.stack.imgur.com/0lRCr.jpg\" alt=\"enter image description here\"></a></p>\n\n<p>Upload.php</p>\n\n<pre><code>&lt;?php\n$ds = DIRECTORY_SEPARATOR;  // Store directory separator (DIRECTORY_SEPARATOR) to a simple variable. This is just a personal preference as we hate to type long variable name.\n$storeFolder = 'uploads';   // Declare a variable for destination folder.\nif (!empty($_FILES)) {\n\n    $tempFile = $_FILES['file']['tmp_name'];          // If file is sent to the page, store the file object to a temporary variable.\n    $targetPath = '/test/' . $ds. $storeFolder . $ds;  // Create the absolute path of the destination folder.\n    // Adding timestamp with image's name so that files with same name can be uploaded easily.\n    $date = new DateTime();\n    $newFileName = $date-&gt;getTimestamp().$_FILES['file']['name'];\n    $targetFile =  $targetPath.$newFileName;  // Create the absolute path of the uploaded file destination.\n    move_uploaded_file($tempFile,$targetFile); // Move uploaded file to destination.\n\n    echo $newFileName;\n}\n?&gt;\n</code></pre>\n\n<p>delete_temp_files.php</p>\n\n<pre><code>&lt;?php\n$ds = DIRECTORY_SEPARATOR;  // Store directory separator (DIRECTORY_SEPARATOR) to a simple variable. This is just a personal preference as we hate to type long variable name.\n$storeFolder = 'uploads'; \n\n$fileList = $_POST['fileList'];\n$targetPath = '/test/' . $ds. $storeFolder . $ds;\n\n\nif(isset($fileList)){\n    unlink($targetPath.$fileList);\n}\n\n?&gt;\n</code></pre>\n\n<p>It seams the my pic uploaded. but there is no file ! where is my wrong ?\n<a href=\"http://i.stack.imgur.com/hzOKc.jpg\" rel=\"nofollow\"><img src=\"http://i.stack.imgur.com/hzOKc.jpg\" alt=\"enter image description here\"></a></p>\n",
+          "@OwnerUserId": 3369042,
+          "@LastActivityDate": "2016-03-06T03:55:42.797",
+          "@Title": "how to uploading image with Dropzone.js",
+          "@Tags": "<javascript><php><jquery><dropzone.js>",
+          "@AnswerCount": 0,
+          "@CommentCount": 0
+        }
+      },
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6218981",
+        "_score": 35822912,
+        "_source": {
+          "@Id": 35822912,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T03:53:37.917",
+          "@Score": 0,
+          "@ViewCount": 8,
+          "@Body": "<p>I've been trying to render images using the official three.js package, <code>three</code> on <code>npm</code> by using the <code>canvas</code> package on <code>npm</code>. So far, not much luck.</p>\n\n<p>I believe this should be possible as node-canvas (<a href=\"https://github.com/Automattic/node-canvas\" rel=\"nofollow\">https://github.com/Automattic/node-canvas</a>) is a full stack canvas renderer, I just don' know how to fix the bridge between this library and three.js to make them work together for server-sided rendering</p>\n\n<p><strong>Here is my failed approach:</strong></p>\n\n<p>By following an old github post I've managed to modify the beginning of the <code>three.js</code> file as follows:</p>\n\n<pre><code>var Canvas = require('canvas');\n\nvar self = self || {}; // File:src/Three.js\n\nvar canvasWidth = 1024;\nvar canvasHeight = 1024;\n\nvar window = {\n    innerWidth: canvasWidth,\n    innerHeight: canvasHeight\n};\n\nvar document = {\n    createElement: function(name) {\n        if (name == \"canvas\") {\n            return new Canvas(canvasWidth, canvasHeight);\n        }\n    }\n};\n</code></pre>\n\n<p>now when I use the canvas renderer to render stuff out, I get no errors.</p>\n\n<pre><code>renderer = new THREE.CanvasRenderer();\n</code></pre>\n\n<p>Not sure how I can manage this thing to output a file, or render anything at all.</p>\n\n<p>Any help is appreaciated.</p>\n",
+          "@OwnerUserId": 1806399,
+          "@LastActivityDate": "2016-03-06T03:53:37.917",
+          "@Title": "Rendering three.js server-side using node-canvas?",
+          "@Tags": "<javascript><node.js><canvas><three.js><node-canvas>",
+          "@AnswerCount": 0,
+          "@CommentCount": 0
+        }
+      },
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6218976",
+        "_score": 35822900,
+        "_source": {
+          "@Id": 35822900,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T03:51:37.497",
+          "@Score": 0,
+          "@ViewCount": 7,
+          "@Body": "<p>I'm using JQuery to have my .wrapper div snap back to its original margin-top after being moved to margin-top. The original margin-top is dependent on browser height. I'm trying to do this by storing the original margin-top value into a variable, and using it for JQuery animate when I want to .wrapper div to snap back later on.</p>\n\n<pre><code>$(document).ready(function() {\n//Adjust .wrapper Margin-top to adjust position to 1/4 of Window Broswer Height\nvar marginWindowSpace = ($(window).height()) / 4;\n$(\".wrapper\").css(\"margin-top\", marginWindowSpace);\n\nvar originalMargin = $(\".wrapper\").css(\"margin-top\").toString();\n});\n\n$(\".title\").click(function() {\n    $(\"#results-container\").empty();\n    $(\".wrapper\").animate({\n    'margin-top': originalMargin\n    }, 200);\n    $(\".title-tag, .or, .random-article, .random-article-underline\").fadeIn(500);\n    $(\"footer\").addClass(\"footer-pos1\");\n});\n</code></pre>\n\n<p><strong>QUESTION: Why wont my the animate margin-top accept my variable (where the original margin-top value is stored), even when converted to string?</strong> I don't want to use a static value as my margin-top.</p>\n\n<p>If you want to see the app code, it's here. <a href=\"http://codepen.io/myleschuahiock/pen/zqvvNZ\" rel=\"nofollow\">http://codepen.io/myleschuahiock/pen/zqvvNZ</a></p>\n\n<p>Any help is appreciated! Thanks!</p>\n",
+          "@OwnerUserId": 5837769,
+          "@LastActivityDate": "2016-03-06T03:51:37.497",
+          "@Title": "JQuery animate margin-top using var not working",
+          "@Tags": "<javascript><jquery><html><css><jquery-animate>",
+          "@AnswerCount": 0,
+          "@CommentCount": 0
+        }
+      },
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6218970",
+        "_score": 35822888,
+        "_source": {
+          "@Id": 35822889,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T03:49:53.613",
+          "@Score": 1,
+          "@ViewCount": 15,
+          "@Body": "<blockquote>\n  <p>This question was asked before, but the answer uses jQuery,\n  <a href=\"http://stackoverflow.com/q/8920934/3186555\">here</a>. \n  <br><h1></h1><hr> So, I am going to tweak the question to specifically\n  ask for a <i><b>native</b> solution</i>, to <i>minimize\n  <b>dependencies</b></i>.</p>\n</blockquote>\n\n<p>Let's say hypothetically, you have a <code>&lt;div&gt;</code> and that <code>&lt;div&gt;</code> is in <strong><em>mid-transition</em></strong> of its <code>opacity</code> value and <code>top</code> value. How would I get the value of both of those properties mid-transition using <strong><em>native</strong> JavaScript</em>?</p>\n",
+          "@OwnerUserId": 3186555,
+          "@LastEditorUserId": 815724,
+          "@LastEditDate": "2016-03-06T03:54:27.343",
+          "@LastActivityDate": "2016-03-06T03:54:27.343",
+          "@Title": "Get CSS value mid-transition with native JavaScript",
+          "@Tags": "<javascript><html><css>",
+          "@AnswerCount": 0,
+          "@CommentCount": 0
+        }
+      },
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6218966",
+        "_score": 35822880,
+        "_source": {
+          "@Id": 35822878,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T03:46:52.340",
+          "@Score": 0,
+          "@ViewCount": 16,
+          "@Body": "<p>Good Day,</p>\n\n<p>I have a webview in Android app which loads a resource that uses html and javascript:</p>\n\n<pre><code>WebView.getSettings().setJavaScriptEnabled(true);\n//webView.getSettings().setDomStorageEnabled(true);\n//webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);\n//webView.getSettings().setLoadWithOverviewMode(true);\n//webView.getSettings().setUseWideViewPort(true);\n//webView.getSettings().setBuiltInZoomControls(true);\n\nwebView.setWebViewClient(new WebViewClient() {\n    public boolean shouldOverrideUrlLoading(WebView view, String url) {\n        view.loadUrl(url);\n        return true;\n    }\n});\n\n//webView.loadUrl(\"file:///android_asset/Index.html\");\nwebView.loadUrl(\"http://foo.com/newbilltemplate/\");\n</code></pre>\n\n<p>The comments show you what I've tried so far. Also I tried local and online resource and the problem still exist.</p>\n\n<p>The index.html page doesn't use Javascript but when  a button is clicked it uses some Javascript calculations to display in the next page.</p>\n\n<p>Thanks,</p>\n",
+          "@OwnerUserId": 6024198,
+          "@LastEditorUserId": 2535611,
+          "@LastEditDate": "2016-03-06T03:50:37.670",
+          "@LastActivityDate": "2016-03-06T03:50:37.670",
+          "@Title": "Javascript doesn't work on Android webview",
+          "@Tags": "<javascript><android><webview>",
+          "@AnswerCount": 0,
+          "@CommentCount": 3
+        }
+      },
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6218965",
+        "_score": 35822872,
+        "_source": {
+          "@Id": 35822873,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T03:46:26.910",
+          "@Score": 0,
+          "@ViewCount": 15,
+          "@Body": "<p>This is the code I'm using to display questions where users are required to select one or more checkboxes as answers:</p>\n\n<pre><code>$QA = '&lt;label for=\"q'.$QID.'-'.$Value.'\"&gt;&lt;input type=\"checkbox\" name=\"q'.$QID.'[]\" id=\"q'.$QID.'-'.$Value.'\" value=\"'.$Value.'\"&gt; '.$QA.'&lt;/label&gt;';\n</code></pre>\n\n<p>And here's a typical display:</p>\n\n<pre><code>&lt;li id=\"q8\"&gt;\n  &lt;div class=\"Question\"&gt;Which ones are countries?&lt;/div&gt;\n  &lt;div class=\"Answer\"&gt;\n    &lt;label for=\"q6-A\"&gt;&lt;input type=\"checkbox\" name=\"q6[]\" id=\"q6-A\" value=\"A\"&gt; Texas&lt;/label&gt;\n    &lt;label for=\"q6-B\"&gt;&lt;input type=\"checkbox\" name=\"q6[]\" id=\"q6-B\" value=\"B\"&gt; Japan&lt;/label&gt;\n    &lt;label for=\"q6-C\"&gt;&lt;input type=\"checkbox\" name=\"q6[]\" id=\"q6-C\" value=\"C\"&gt; Spain&lt;/label&gt;\n  &lt;/div&gt;\n&lt;/li&gt;\n</code></pre>\n\n<p>I want to modify the code so that the form won't submit unless a user selects at least one checkbox. Every script I've tried requires them to choose EVERY checkbox, but I just want to make sure they attempt to answer the question by choosing ANY ONE checkbox.</p>\n\n<p>Someone suggested the following script:</p>\n\n<pre><code>$('input[type=checkbox][name=gender]')[0].attr('required', 'required');;\n</code></pre>\n\n<p>So I replaced \"<code>name=gender</code>\" with \"<code>name=q6[]</code>\", but that doesn't work. I'm guessing the brackets after q6 might be a problem, but if I remove the brackets from the code that drives the form - <code>name=\"q'.$QID.'[]\"</code> - then the test is scored incorrectly on the results page.</p>\n\n<p>Another problem is that this script requires a specific name, when similar multiple-choice checkbox questions on various tests can have various names.</p>\n\n<p>Is there some way to modify this script so that it targets ALL questions that have checkboxes, requiring users to select at least one checkbox?</p>\n",
+          "@OwnerUserId": 2469520,
+          "@LastEditorUserId": 557846,
+          "@LastEditDate": "2016-03-06T03:55:30.640",
+          "@LastActivityDate": "2016-03-06T03:55:30.640",
+          "@Title": "Checkbox: jQuery required function",
+          "@Tags": "<javascript><jquery><checkbox>",
+          "@AnswerCount": 0,
+          "@CommentCount": 3
+        }
+      },
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6218957",
+        "_score": 35822856,
+        "_source": {
+          "@Id": 35822858,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T03:43:06.577",
+          "@Score": 1,
+          "@ViewCount": 14,
+          "@Body": "<p>For example, there are three different pages in my website which will use different js code and some common js code.</p>\n\n<p>Is it a good practices to separate these js code into different files?</p>\n\n<p>For example, in A.html:</p>\n\n<pre><code>&lt;script src=\"/js/common.js\"&gt;&lt;/script&gt;\n&lt;script src=\"/js/pageA.js\"&gt;&lt;/script&gt;\n</code></pre>\n\n<p>in B.html:</p>\n\n<pre><code>&lt;script src=\"/js/common.js\"&gt;&lt;/script&gt;\n&lt;script src=\"/js/pageB.js\"&gt;&lt;/script&gt;\n</code></pre>\n\n<p>So, when I access page A, page B related js will not be loaded, so it will be more quick I think? Am I thinking too much? its not necessary?</p>\n\n<p>Or should I just put all js in one js file?</p>\n\n<p>For example, in every html file:</p>\n\n<pre><code>&lt;script src=\"/js/main.js\"&gt;&lt;/script&gt;\n</code></pre>\n\n<p>Normally which way do people do ?</p>\n",
+          "@OwnerUserId": 2038901,
+          "@LastActivityDate": "2016-03-06T04:06:53.310",
+          "@Title": "Is it a good practices to separate JS file based on pages?",
+          "@Tags": "<javascript><html><http><web>",
+          "@AnswerCount": 4,
+          "@CommentCount": 0
+        }
+      },
+      {
+        "_index": "stackoverflowbig",
+        "_type": "question",
+        "_id": "6218952",
+        "_score": 35822840,
+        "_source": {
+          "@Id": 35822840,
+          "@PostTypeId": 1,
+          "@CreationDate": "2016-03-06T03:40:50.983",
+          "@Score": 0,
+          "@ViewCount": 51,
+          "@Body": "<p>So I have a list set up called <em>lines</em> which has every line set up seperated. Then those get sent to another function called <em>rdline()</em> that reads it. I have set up an alert to see what goes through it and it only alerts once when there are multiple entries in the array.</p>\n\n<pre><code>&lt;style&gt;\ncode {\n  width: 100%;\n  height: 100vh;\n  border: none;\n  background: black;\n  color: white;\n  font-size: 150%;\n  font-family: sans-serif;\n  display: inline-block;\n}\n&lt;/style&gt;\n\n&lt;button onClick='op()'&gt;Run&lt;/button&gt;\n&lt;span id='rd'&gt;&lt;/span&gt;\n&lt;br /&gt;\n&lt;br /&gt;\n&lt;code contenteditable=\"true\" id='t'&gt;&lt;/code&gt;\n\n&lt;script&gt;\nvar ms = false;\nvar ss;\nvar c;\nvar lc;\nvar lines = [];\nvar currset;\nvar win;\nvar sendline = 0;\n    var op = function() {\n        document.getElementById('rd').innerHTML = \"Reading...\";\n        ss = document.getElementById('t').innerHTML;\n        c = document.getElementById('t').innerHTML;\n        document.getElementById('t').innerHTML = \"\";\n        lc = 0;\n        lines = [];\n        currset = [];\n        setLines(c);\n    }\n    var setLines = function(cont) {\n        for (i = 0; i &lt; cont.length; i++) {\n            if (cont[i] == \";\") {\n                lines[lc] = currset.join(\"\").replace(\"&lt;br&gt;\",\"\") + \" \";\n                lc++;\n                currset = [];\n\n            }\n            else {\n                currset[i] = cont[i];\n            }\n        }\n        for (i = 0; i &lt; lines.length; i++) {\n            rdline(lines[i])\n        }\n        tm();\n    }\n    var rdline = function(parg) {\n        alert(parg)\n        var pl = [];\n        var toplace = [];\n        var pcount = 0;\n        for (i = 0; i &lt; parg.length; i++) {\n            if (parg[i] == \" \") {\n                pl[pcount] = toplace.join(\"\");\n                pcount++;\n                toplace = [];\n            }\n            else {\n                toplace[i] = parg[i];\n            }\n        }\n        //functions\n        if (pl[0] == \"$setupmemes\") {\n            ms = true;\n            win = window.open(\"\",\"\",\"height=800\",\"width=800\")\n        }\n        if (ms == true) {\n            if (pl[0] == \"expand\") {\n                win.document.write('dongs')\n            }\n        }\n        document.getElementById('t').innerHTML = ss;\n    }\n&lt;/script&gt;\n</code></pre>\n\n<p><div class=\"snippet\" data-lang=\"js\" data-hide=\"true\">\r\n<div class=\"snippet-code snippet-currently-hidden\">\r\n<pre class=\"snippet-code-js lang-js prettyprint-override\"><code>var ms = false;\r\n    var ss;\r\n    var c;\r\n    var lc;\r\n    var lines = [];\r\n    var currset;\r\n    var win;\r\n    var sendline = 0;\r\n    var op = function() {\r\n      document.getElementById('rd').innerHTML = \"Reading...\";\r\n      ss = document.getElementById('t').innerHTML;\r\n      c = document.getElementById('t').innerHTML;\r\n      document.getElementById('t').innerHTML = \"\";\r\n      lc = 0;\r\n      lines = [];\r\n      currset = [];\r\n      setLines(c);\r\n    }\r\n    var setLines = function(cont) {\r\n      for (i = 0; i &lt; cont.length; i++) {\r\n        if (cont[i] == \";\") {\r\n          lines[lc] = currset.join(\"\").replace(\"&lt;br&gt;\", \"\") + \" \";\r\n          lc++;\r\n          currset = [];\r\n\r\n        } else {\r\n          currset[i] = cont[i];\r\n        }\r\n      }\r\n      for (i = 0; i &lt; lines.length; i++) {\r\n        rdline(lines[i])\r\n      }\r\n      tm();\r\n    }\r\n    var rdline = function(parg) {\r\n      var pl = [];\r\n      var toplace = [];\r\n      var pcount = 0;\r\n      for (i = 0; i &lt; parg.length; i++) {\r\n        if (parg[i] == \" \") {\r\n          pl[pcount] = toplace.join(\"\");\r\n          pcount++;\r\n          toplace = [];\r\n        } else {\r\n          toplace[i] = parg[i];\r\n        }\r\n      }\r\n      //functions\r\n      if (pl[0] == \"$setupmemes\") {\r\n        ms = true;\r\n        win = window.open(\"\", \"\", \"height=800\", \"width=800\")\r\n      }\r\n      if (ms == true) {\r\n        if (pl[0] == \"expand\") {\r\n          win.document.write('dongs')\r\n        }\r\n      }\r\n      document.getElementById('t').innerHTML = ss;\r\n    }</code></pre>\r\n<pre class=\"snippet-code-css lang-css prettyprint-override\"><code>code {\r\n  width: 100%;\r\n  height: 100vh;\r\n  border: none;\r\n  background: black;\r\n  color: white;\r\n  font-size: 150%;\r\n  font-family: sans-serif;\r\n  display: inline-block;\r\n}</code></pre>\r\n<pre class=\"snippet-code-html lang-html prettyprint-override\"><code>&lt;button onClick='op()'&gt;Run&lt;/button&gt;\r\n&lt;span id='rd'&gt;&lt;/span&gt;\r\n&lt;br /&gt;\r\n&lt;br /&gt;\r\n&lt;code contenteditable=\"true\" id='t'&gt;&lt;/code&gt;</code></pre>\r\n</div>\r\n</div>\r\n</p>\n",
+          "@OwnerUserId": 4905894,
+          "@LastEditorUserId": 4905894,
+          "@LastEditDate": "2016-03-06T04:00:37.810",
+          "@LastActivityDate": "2016-03-06T04:00:37.810",
+          "@Title": "Function only executing once",
+          "@Tags": "<javascript><html>",
+          "@AnswerCount": 0,
+          "@CommentCount": 7
+        }
+      }
+    ]
+  }
