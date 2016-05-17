@@ -57,3 +57,15 @@ Currently the RAKE (Rapid Automatic Keyword Extraction) algorithm is the method 
 ##Front-End
 The front end is styled with elements from Bootstrap. jquery was used to make requests for new automatically generated tag every time the user entered a new word, and the user could add more tags manually too. The request was finally made to an elasticsearch server running on localhost:9200
 Upon sending the query, the top three results are returned, that are linked to the actual stackoverflow pages. Actual performance accuracy still has to be numerically evaluated, but it does pretty well on most general queries. A demo can be viewed [here](https://youtu.be/biQktl98i9o?t=364)
+
+
+
+##Other Analysis
+We had the chance to run a bunch of other different scripts to analyse certain different things in our dataset. As of now, we have run our scripts on the 10000 most recent questions tagged with Javascript and with Python. We analyzed extracted keywords in each and have mapped them out in these word maps. Further analysis will be done soon, but for the time being, these images represent really well what these outputs were:
+
+Javascript:
+![alt-text](https://github.com/hagarwa3/stackoverflow-search/blob/master/keyword_extraction/extra_analysis/JSmap.png "Javascript Word Map")
+
+Python:
+![alt-text](https://github.com/hagarwa3/stackoverflow-search/blob/master/keyword_extraction/extra_analysis/pythonmap.png "Python Word Map")
+
