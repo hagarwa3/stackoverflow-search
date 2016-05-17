@@ -35,4 +35,12 @@ A sample entry is as follows:
 	"@FavoriteCount": 116
 }
 ```
+Each of the 11 million entries needs to be indexed into elasticsearch, so I had to split the entries into multiple files of 1000 entries each, followed by adding the requisite information before each entry to get it indexed successfully, and then using multiple calls through [cURL](https://curl.haxx.se/) to actually get the data indexed. Most repetitive bash scripts were set up using python. The additional data was as follows (teh id varied for each entry):
+```json
+{"index":{"_index":"stackoverflowbig","_type":"question","_id":9948026}}
+```
+
+Finally the data was all successfully indexed and then could be queried easily using [Sense](https://www.elastic.co/guide/en/sense/current/index.html) to test it. An example is shown as follows:
+
+(https://github.com/hagarwa3/stackoverflow-search/blob/master/demo/images/sense%2Bsimple%20query.png "Sense + Simple Query")
 
