@@ -42,5 +42,5 @@ Each of the 11 million entries needs to be indexed into elasticsearch, so I had 
 
 Finally the data was all successfully indexed and then could be queried easily using [Sense](https://www.elastic.co/guide/en/sense/current/index.html) to test it. An example is shown as follows:
 
-(https://github.com/hagarwa3/stackoverflow-search/blob/master/demo/images/sense%2Bsimple%20query.png "Sense + Simple Query")
+![alt-text](https://github.com/hagarwa3/stackoverflow-search/blob/master/demo/images/sense%2Bsimple%20query.png "Sense + Simple Query")
 
