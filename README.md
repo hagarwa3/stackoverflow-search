@@ -46,7 +46,7 @@ Finally the data was all successfully indexed and then could be queried easily u
 
 
 
-## Tetsing Different Queries
+## Testing Different Queries
 This was relatively more tricky, simply because it is a very subjective thing, and without a lot of user feedback, it's usually not possible to get a strong, statistically "good" query. We did however test different things, such as weighing most recent activity, date when question was posted, upvotes, number of responses etc. Our final query is [here](https://github.com/hagarwa3/stackoverflow-search/blob/master/query.json).
 
 
